@@ -17,6 +17,8 @@ public class GameApp {
 	
 	private ArrayList<Character> startingList = new ArrayList<Character>();
 	private ArrayList<Character> playerList = new ArrayList<Character>();
+	private ArrayList<Character> aiList = new ArrayList<Character>();
+	
 	private Random rnd = new Random();
 	
 	public static void main (String[] args){
@@ -28,8 +30,23 @@ public class GameApp {
 	
 	void intializeApp(){
 		populateList();
-		playerList();
+		
+		if(!startingList.isEmpty()){
+			runGame();
+		}
 	}
+	
+	void runGame(){
+		try {
+			
+			playerList(playerList);
+			GameMenu frame = new GameMenu(playerList);
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	int randomGenerator(){
 		return rnd.nextInt(startingList.size()-1);
@@ -42,15 +59,15 @@ public class GameApp {
 		}
 	}
 	
-	void playerList(){
+	void playerList(ArrayList<Character> list){
 		int idx = 0;
 		
 		for (int i = 0; i < NUM_OF_CHARACTERS;) {
 			idx = randomGenerator();
 			
 			if(startingList.get(idx) != null){
-				playerList.add(startingList.get(idx));
-				System.out.println(playerList.get(i));
+				list.add(startingList.get(idx));
+				System.out.println(list.get(i));
 				++i;
 			} else {
 				continue;
