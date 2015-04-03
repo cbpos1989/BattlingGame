@@ -33,6 +33,6 @@ public enum Character {
 	}
 	
 	public String toString(){
-		return  "Strength: " + this.strength + " Craft: " + this.craft;
+		return  super.toString() + " Strength: " + this.strength + " Craft: " + this.craft;
 	}
 }
