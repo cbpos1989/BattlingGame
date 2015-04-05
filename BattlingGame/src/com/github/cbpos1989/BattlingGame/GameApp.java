@@ -14,6 +14,7 @@ import java.util.Random;
 
 public class GameApp {
 	private final int NUM_OF_CHARACTERS = 5;
+	private final int MAX_DIE_ROLL = 6;
 	
 	private ArrayList<Character> startingList = new ArrayList<Character>();
 	private ArrayList<Character> playerList = new ArrayList<Character>();
@@ -50,8 +51,8 @@ public class GameApp {
 	}
 	
 	
-	int randomGenerator(){
-		return rnd.nextInt(startingList.size()-1);
+	int randomGenerator(int bound){
+		return rnd.nextInt(bound);
 	}
 	
 	void populateList(){
@@ -65,11 +66,12 @@ public class GameApp {
 		int idx = 0;
 		
 		for (int i = 0; i < NUM_OF_CHARACTERS;) {
-			idx = randomGenerator();
+			idx = randomGenerator(startingList.size()-1);
 			
 			if(startingList.get(idx) != null){
 				list.add(startingList.get(idx));
-				System.out.println(list.get(i));
+				startingList.remove(idx);
+				//System.out.println(list.get(i));
 				++i;
 			} else {
 				continue;
@@ -78,7 +80,27 @@ public class GameApp {
 		
 	}
 	
-	void doBattle(Character combatantPlayer, Character combatantAI){
+	void attack(Character attacker, Character defender){
+		
+		
+		int attackerDieRoll = randomGenerator(MAX_DIE_ROLL) + 1;
+		int defenderDieRoll = randomGenerator(MAX_DIE_ROLL) + 1;
+		
+		
+		int hitPoints = attacker.getStrength() - attackerDieRoll;
+		int defendPoints = defender.getCraft() - defenderDieRoll;
+		
+		
+		
+		if(hitPoints > defendPoints){
+			System.out.println("Win");
+			defender.setWillpower(hitPoints - defendPoints);
+			BattleWindow.combatReport = defender.getName() + " was hit";
+			
+		} else {
+			System.out.println("Lose");
+			BattleWindow.combatReport = "Hit Missed";
+		}
 		
 	}
 }

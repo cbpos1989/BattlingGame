@@ -26,6 +26,10 @@ public enum Character {
 		this.willpower = willpower;
 	}
 	
+	public String getName(){
+		return super.toString();
+	}
+	
 	public int getStrength(){
 		return this.strength;
 	}
@@ -36,6 +40,10 @@ public enum Character {
 	
 	public int getWillpower(){
 		return this.willpower;
+	}
+	
+	public void setWillpower(int decrement){
+		this.willpower = this.willpower - decrement;
 	}
 	
 	public String toString(){

@@ -16,9 +16,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Component;
+import javax.swing.SwingConstants;
+import javax.swing.JInternalFrame;
 
 public class GameMenu extends JFrame {
-
+	private GameApp ga =  new GameApp();
+	private String playerCombatant = null;
+	private String aiCombatant = null;
 	private JPanel contentPane;
 
 	/**
@@ -50,8 +54,6 @@ public class GameMenu extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		
-		
 		JLabel lblMainTitle = new JLabel("Battling Game");
 		lblMainTitle.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 18));
 		lblMainTitle.setBounds(351, 11, 158, 40);
@@ -68,8 +70,11 @@ public class GameMenu extends JFrame {
 		JButton btnBattle_0 = new JButton("Battle");
 		btnBattle_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int rnd = ga.randomGenerator(aiList.size()-1);
 				
-			}
+				BattleWindow window = new BattleWindow(playerList.get(0),aiList.get(rnd));
+				window.setVisible(true);
+				}
 		});
 		btnBattle_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
 		btnBattle_0.setBounds(360, 97, 89, 23);
@@ -169,7 +174,7 @@ public class GameMenu extends JFrame {
 		txtAIChar_4.setBounds(551, 352, 335, 52);
 		contentPane.add(txtAIChar_4);
 		
+	
 		
-		
-	}
+		}
 }
