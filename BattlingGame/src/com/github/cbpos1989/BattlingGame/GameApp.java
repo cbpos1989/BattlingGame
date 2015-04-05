@@ -39,8 +39,10 @@ public class GameApp {
 	void runGame(){
 		try {
 			
-			playerList(playerList);
-			GameMenu frame = new GameMenu(playerList);
+			genRandomList(playerList);
+			genRandomList(aiList);
+			
+			GameMenu frame = new GameMenu(playerList, aiList);
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,7 +61,7 @@ public class GameApp {
 		}
 	}
 	
-	void playerList(ArrayList<Character> list){
+	void genRandomList(ArrayList<Character> list){
 		int idx = 0;
 		
 		for (int i = 0; i < NUM_OF_CHARACTERS;) {
@@ -73,6 +75,10 @@ public class GameApp {
 				continue;
 			}
 		}
+		
+	}
+	
+	void doBattle(Character combatantPlayer, Character combatantAI){
 		
 	}
 }
