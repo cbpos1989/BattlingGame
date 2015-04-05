@@ -42,8 +42,8 @@ public enum Character {
 		return this.willpower;
 	}
 	
-	public void setWillpower(int decrement){
-		this.willpower = this.willpower - decrement;
+	public void setWillpower(int willpower){
+		this.willpower = willpower;
 	}
 	
 	public String toString(){

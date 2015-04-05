@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JInternalFrame;
 
 public class GameMenu extends JFrame {
+	public static boolean isBattling = false;
+	
 	private GameApp ga =  new GameApp();
 	private String playerCombatant = null;
 	private String aiCombatant = null;
@@ -70,10 +72,13 @@ public class GameMenu extends JFrame {
 		JButton btnBattle_0 = new JButton("Battle");
 		btnBattle_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				isBattling = true;
+				
 				int rnd = ga.randomGenerator(aiList.size()-1);
 				
 				BattleWindow window = new BattleWindow(playerList.get(0),aiList.get(rnd));
 				window.setVisible(true);
+				
 				}
 		});
 		btnBattle_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));

@@ -17,10 +17,12 @@ public class GameApp {
 	private final int MAX_DIE_ROLL = 6;
 	
 	private ArrayList<Character> startingList = new ArrayList<Character>();
-	private ArrayList<Character> playerList = new ArrayList<Character>();
-	private ArrayList<Character> aiList = new ArrayList<Character>();
-	
 	private Random rnd = new Random();
+	
+	public static ArrayList<Character> playerList = new ArrayList<Character>();
+	public static ArrayList<Character> aiList = new ArrayList<Character>();
+	
+	
 	
 	public static void main (String[] args){
 		//System.out.println("Working");
@@ -34,6 +36,7 @@ public class GameApp {
 		
 		if(!startingList.isEmpty()){
 			runGame();
+			
 		}
 	}
 	
@@ -80,6 +83,13 @@ public class GameApp {
 		
 	}
 	
+	void removeListEntry(ArrayList<Character> list, Character character){
+		//int idx = list.indexOf(character);
+		list.remove(character);
+		
+		System.out.println(list);
+	}
+	
 	void attack(Character attacker, Character defender){
 		
 		
@@ -89,19 +99,42 @@ public class GameApp {
 		
 		int hitPoints = attacker.getStrength() - attackerDieRoll;
 		int defendPoints = defender.getCraft() - defenderDieRoll;
-		
+	
 		
 		
 		if(hitPoints > defendPoints){
-			System.out.println("Win");
-			defender.setWillpower(hitPoints - defendPoints);
-			BattleWindow.combatReport = defender.getName() + " was hit";
+			
+			defender.setWillpower(defender.getWillpower() - (hitPoints - defendPoints));
+			
+			checkWillpower(defender);
 			
 		} else {
-			System.out.println("Lose");
+			
 			BattleWindow.combatReport = "Hit Missed";
 		}
 		
+	}
+	
+	void checkWillpower(Character defender){
+		if(defender.getWillpower() < 1){
+			BattleWindow.combatReport = defender.getName() + " was slain";
+			GameMenu.isBattling = false;
+			defender.setWillpower(0);
+			
+			if(BattleWindow.isPlayerTurn){
+			
+				
+				removeListEntry(aiList, defender);
+				
+			} else {
+				
+				
+				removeListEntry(playerList, defender);
+			}
+			
+		} else{
+			BattleWindow.combatReport = defender.getName() + " was hit";
+		}
 	}
 }
 

@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class BattleWindow extends JFrame {
 	public static String combatReport = null;
+	public static boolean isPlayerTurn = false;
 	
 	private GameApp ga = new GameApp();
 	private JPanel contentPane;
@@ -44,14 +45,15 @@ public class BattleWindow extends JFrame {
 		JButton btnAttack = new JButton("Attack");
 		btnAttack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				isPlayerTurn = true;
 				
-				ga.attack(playerCombatant, aiCombatant);
-				
-				lblPlayerWillpower.setText("Willpower: " + playerCombatant.getWillpower());
-				lblAIWillpower.setText("Willpower: " + aiCombatant.getWillpower());
-				lblCombat.setText(combatReport);
-				
-				
+				if(GameMenu.isBattling){
+					ga.attack(playerCombatant, aiCombatant);
+					
+					lblPlayerWillpower.setText("Willpower: " + playerCombatant.getWillpower());
+					lblAIWillpower.setText("Willpower: " + aiCombatant.getWillpower());
+					lblCombat.setText(combatReport);
+				}
 			}
 		});
 		btnAttack.setBounds(241, 73, 111, 40);
@@ -60,13 +62,15 @@ public class BattleWindow extends JFrame {
 		JButton btnDefend = new JButton("Defend");
 		btnDefend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				isPlayerTurn = false;
 				
-				ga.attack(aiCombatant, playerCombatant);
-				
-				lblPlayerWillpower.setText("Willpower: " + playerCombatant.getWillpower());
-				lblAIWillpower.setText("Willpower: " + aiCombatant.getWillpower());
-				lblCombat.setText(combatReport);
-				
+				if(GameMenu.isBattling){
+					ga.attack(aiCombatant, playerCombatant);
+					
+					lblPlayerWillpower.setText("Willpower: " + playerCombatant.getWillpower());
+					lblAIWillpower.setText("Willpower: " + aiCombatant.getWillpower());
+					lblCombat.setText(combatReport);
+				}
 			}
 		});
 		btnDefend.setBounds(241, 153, 111, 40);
