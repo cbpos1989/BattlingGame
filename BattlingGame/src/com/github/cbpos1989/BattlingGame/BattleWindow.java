@@ -1,4 +1,14 @@
+/**
+ * 
+ */
+
 package com.github.cbpos1989.BattlingGame;
+/**
+ * Class that open a Battle Window. Player attacks opponents then defends.
+ * 
+ * @author Colm O'Sullivan
+ *
+ */
 
 import java.awt.BorderLayout;
 //import java.awt.EventQueue;

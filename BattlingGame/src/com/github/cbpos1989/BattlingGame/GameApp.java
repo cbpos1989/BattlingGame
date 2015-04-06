@@ -46,7 +46,7 @@ public class GameApp {
 			genRandomList(playerList);
 			genRandomList(aiList);
 			
-			GameMenu frame = new GameMenu(playerList, aiList);
+			GameMenu frame = new GameMenu();
 			frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,12 +83,11 @@ public class GameApp {
 		
 	}
 	
-	void removeListEntry(ArrayList<Character> list, Character character){
-		//int idx = list.indexOf(character);
+	/*void removeListEntry(ArrayList<Character> list, Character character){
 		list.remove(character);
 		
 		System.out.println(list);
-	}
+	}*/
 	
 	void attack(Character attacker, Character defender){
 		
@@ -120,18 +119,13 @@ public class GameApp {
 			BattleWindow.combatReport = defender.getName() + " was slain";
 			GameMenu.isBattling = false;
 			defender.setWillpower(0);
+			defender.setStatus(false);
 			
 			if(BattleWindow.isPlayerTurn){
-			
-				
-				removeListEntry(aiList, defender);
-				
+				GameMenu.playerScore++;
 			} else {
-				
-				
-				removeListEntry(playerList, defender);
+				GameMenu.aiScore++;
 			}
-			
 		} else{
 			BattleWindow.combatReport = defender.getName() + " was hit";
 		}

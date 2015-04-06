@@ -1,5 +1,13 @@
+/**
+ * 
+ */
 package com.github.cbpos1989.BattlingGame;
-
+/**
+ * enum to hold all of the games character with thier states and behaviours.
+ * 
+ * @author Colm O'Sullivan
+ *
+ */
 public enum Character {
 	Lugh(14, 11, 10), 
 	Brigid(8, 16, 8),
@@ -19,6 +27,8 @@ public enum Character {
 	private int strength;
 	private int craft;
 	private int willpower;
+	private boolean isAlive = true;
+	private boolean hasBattled;
 	
 	Character(int strength, int craft, int willpower){
 		this.strength = strength;
@@ -44,6 +54,18 @@ public enum Character {
 	
 	public void setWillpower(int willpower){
 		this.willpower = willpower;
+	}
+	
+	public boolean getStatus(){
+		return this.isAlive;
+	}
+	
+	public void setStatus(boolean status){
+		this.isAlive = status;
+	}
+	
+	public boolean hasBattled(){
+		return this.hasBattled;
 	}
 	
 	public String toString(){
