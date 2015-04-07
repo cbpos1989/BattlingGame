@@ -38,9 +38,32 @@ public class GameMenu extends JFrame {
 	public static int aiScore = 0;
 	
 	private GameApp ga =  new GameApp();
-	private Character playerCombatant = null;
-	private String aiCombatant = null;
+	
+	private Character playerCombatant_0 = null;
+	private Character playerCombatant_1 = null;
+	private Character playerCombatant_2 = null;
+	private Character playerCombatant_3 = null;
+	private Character playerCombatant_4 = null;
+	
+	private Character aiCombatant_0 = null;
+	private Character aiCombatant_1 = null;
+	private Character aiCombatant_2 = null;
+	private Character aiCombatant_3 = null;
+	private Character aiCombatant_4 = null;
+	
 	private JPanel contentPane;
+	
+	private JTextArea txtPlayerChar_0 = new JTextArea();
+	private JTextArea txtPlayerChar_1 = new JTextArea();
+	private JTextArea txtPlayerChar_2 = new JTextArea();
+	private JTextArea txtPlayerChar_3 = new JTextArea();
+	private JTextArea txtPlayerChar_4 = new JTextArea();
+	
+	private JTextArea txtAIChar_0 = new JTextArea();
+	private JTextArea txtAIChar_1 = new JTextArea();
+	private JTextArea txtAIChar_2 = new JTextArea();
+	private JTextArea txtAIChar_3 = new JTextArea();
+	private JTextArea txtAIChar_4 = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -76,183 +99,238 @@ public class GameMenu extends JFrame {
 		lblMainTitle.setBounds(351, 11, 158, 40);
 		contentPane.add(lblMainTitle);
 		
-		//Player Combatant 1
-		JTextArea txtPlayerChar_0 = new JTextArea(GameApp.playerList.get(0).toString());
-		txtPlayerChar_0.setBackground(new Color(222, 184, 135));
-		txtPlayerChar_0.setEditable(false);
-		txtPlayerChar_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtPlayerChar_0.setBounds(10, 82, 335, 52);
-		contentPane.add(txtPlayerChar_0);
+		intializeCharacters();
 		
+		updatePlayerText();
+		updateAIText();
+		
+		
+		}
 	
-		JButton btnBattle_0 = new JButton("Battle");
-		btnBattle_0.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				if (playerScore < 5 && aiScore < 5) {
-					openBattleWindow(GameApp.playerList.get(0));
-				} else if(playerScore == 5){
-					//TODO Add Pop-up Winning Message
-					System.out.println("Player Wins");
-				} else{
-					//TODO Add Pop-up Losing Message
-					System.out.println("Player Loses");
-				}
-				
+		void intializeCharacters(){
+			playerCombatant_0 = GameApp.playerList.get(0);
+			playerCombatant_1 = GameApp.playerList.get(1);
+			playerCombatant_2 = GameApp.playerList.get(2);
+			playerCombatant_3 = GameApp.playerList.get(3);
+			playerCombatant_4 = GameApp.playerList.get(4);
+			
+			aiCombatant_0 = GameApp.aiList.get(0);
+			aiCombatant_1 = GameApp.aiList.get(1);
+			aiCombatant_2 = GameApp.aiList.get(2);
+			aiCombatant_3 = GameApp.aiList.get(3);
+			aiCombatant_4 = GameApp.aiList.get(4);
+		}
+
+		void updatePlayerText(){
+			//Player Combatant 1
+			
+			txtPlayerChar_0.setText(playerCombatant_0.toString());
+			if(playerCombatant_0.getStatus() == false){
+				updateCharacterText(playerCombatant_0, txtPlayerChar_0);
 			}
-		});
-		btnBattle_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
-		btnBattle_0.setBounds(360, 97, 89, 23);
-		contentPane.add(btnBattle_0);
-		
-		//Player Combatant 2
-		JTextArea txtPlayerChar_1 = new JTextArea(GameApp.playerList.get(1).toString());
-		txtPlayerChar_1.setBackground(new Color(222, 184, 135));
-		txtPlayerChar_1.setEditable(false);
-		txtPlayerChar_1.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtPlayerChar_1.setBounds(10, 145, 335, 52);
-		contentPane.add(txtPlayerChar_1);
-		
-		JButton btnBattle_1 = new JButton("Battle");
-		btnBattle_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (playerScore < 5 && aiScore < 5) {
-					openBattleWindow(GameApp.playerList.get(1));
-				} else if(playerScore == 5){
-					//TODO Add Pop-up Winning Message
-					System.out.println("Player Wins");
-				} else{
-					//TODO Add Pop-up Losing Message
-					System.out.println("Player Loses");
+			txtPlayerChar_0.setBackground(new Color(222, 184, 135));
+			txtPlayerChar_0.setEditable(false);
+			txtPlayerChar_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtPlayerChar_0.setBounds(10, 82, 335, 52);
+			contentPane.add(txtPlayerChar_0);
+			
+			JButton btnBattle_0 = new JButton("Battle");
+			btnBattle_0.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					if (playerScore < 5 && aiScore < 5) {
+						openBattleWindow(GameApp.playerList.get(0));
+					} else if(playerScore == 5){
+						//TODO Add Pop-up Winning Message
+						System.out.println("Player Wins");
+					} else{
+						//TODO Add Pop-up Losing Message
+						System.out.println("Player Loses");
+					}
+					
 				}
+			});
+			btnBattle_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
+			btnBattle_0.setBounds(360, 97, 89, 23);
+			contentPane.add(btnBattle_0);
+			
+			//Player Combatant 2
+			txtPlayerChar_1.setText(playerCombatant_1.toString());
+			if(playerCombatant_1.getStatus() == false){
+				updateCharacterText(playerCombatant_1, txtPlayerChar_1);
 			}
-		});
-		btnBattle_1.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
-		btnBattle_1.setBounds(360, 158, 89, 23);
-		contentPane.add(btnBattle_1);
-		
-		//Player Combatant 3
-		JTextArea txtPlayerChar_2 = new JTextArea(GameApp.playerList.get(2).toString());
-		txtPlayerChar_2.setBackground(new Color(222, 184, 135));
-		txtPlayerChar_2.setEditable(false);
-		txtPlayerChar_2.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtPlayerChar_2.setBounds(10, 208, 335, 52);
-		contentPane.add(txtPlayerChar_2);
-		
-		JButton btnBattle_2 = new JButton("Battle");
-		btnBattle_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (playerScore < 5 && aiScore < 5) {
-					openBattleWindow(GameApp.playerList.get(2));
-				} else if(playerScore == 5){
-					//TODO Add Pop-up Winning Message
-					System.out.println("Player Wins");
-				} else{
-					//TODO Add Pop-up Losing Message
-					System.out.println("Player Loses");
+			txtPlayerChar_1.setBackground(new Color(222, 184, 135));
+			txtPlayerChar_1.setEditable(false);
+			txtPlayerChar_1.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtPlayerChar_1.setBounds(10, 145, 335, 52);
+			contentPane.add(txtPlayerChar_1);
+			
+			JButton btnBattle_1 = new JButton("Battle");
+			btnBattle_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (playerScore < 5 && aiScore < 5) {
+						openBattleWindow(GameApp.playerList.get(1));
+					} else if(playerScore == 5){
+						//TODO Add Pop-up Winning Message
+						System.out.println("Player Wins");
+					} else{
+						//TODO Add Pop-up Losing Message
+						System.out.println("Player Loses");
+					}
 				}
+			});
+			btnBattle_1.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
+			btnBattle_1.setBounds(360, 158, 89, 23);
+			contentPane.add(btnBattle_1);
+			
+			//Player Combatant 3
+			txtPlayerChar_2.setText(playerCombatant_2.toString());
+			if(playerCombatant_2.getStatus() == false){
+				updateCharacterText(playerCombatant_2, txtPlayerChar_2);
 			}
-		});
-		btnBattle_2.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
-		btnBattle_2.setBounds(360, 229, 89, 23);
-		contentPane.add(btnBattle_2);
-		
-		//Player Combatant 4
-		JTextArea txtPlayerChar_3 = new JTextArea(GameApp.playerList.get(3).toString());
-		txtPlayerChar_3.setBackground(new Color(222, 184, 135));
-		txtPlayerChar_3.setEditable(false);
-		txtPlayerChar_3.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtPlayerChar_3.setBounds(10, 271, 335, 52);
-		contentPane.add(txtPlayerChar_3);
-		
-		JButton btnBattle_3 = new JButton("Battle");
-		btnBattle_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (playerScore < 5 && aiScore < 5) {
-					openBattleWindow(GameApp.playerList.get(3));
-				} else if(playerScore == 5){
-					//TODO Add Pop-up Winning Message
-					System.out.println("Player Wins");
-				} else{
-					//TODO Add Pop-up Losing Message
-					System.out.println("Player Loses");
+			txtPlayerChar_2.setBackground(new Color(222, 184, 135));
+			txtPlayerChar_2.setEditable(false);
+			txtPlayerChar_2.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtPlayerChar_2.setBounds(10, 208, 335, 52);
+			contentPane.add(txtPlayerChar_2);
+			
+			JButton btnBattle_2 = new JButton("Battle");
+			btnBattle_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (playerScore < 5 && aiScore < 5) {
+						openBattleWindow(GameApp.playerList.get(2));
+					} else if(playerScore == 5){
+						//TODO Add Pop-up Winning Message
+						System.out.println("Player Wins");
+					} else{
+						//TODO Add Pop-up Losing Message
+						System.out.println("Player Loses");
+					}
 				}
+			});
+			btnBattle_2.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
+			btnBattle_2.setBounds(360, 229, 89, 23);
+			contentPane.add(btnBattle_2);
+			
+			//Player Combatant 4
+			txtPlayerChar_3.setText(playerCombatant_3.toString());
+			if(playerCombatant_3.getStatus() == false){
+				updateCharacterText(playerCombatant_3, txtPlayerChar_3);
 			}
-		});
-		btnBattle_3.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
-		btnBattle_3.setBounds(360, 291, 89, 23);
-		contentPane.add(btnBattle_3);
-		
-		//Player Combatant 5
-		JTextArea txtPlayerChar_4 = new JTextArea(GameApp.playerList.get(4).toString());
-		txtPlayerChar_4.setBackground(new Color(222, 184, 135));
-		txtPlayerChar_4.setEditable(false);
-		txtPlayerChar_4.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtPlayerChar_4.setBounds(10, 337, 335, 52);
-		contentPane.add(txtPlayerChar_4);
-		
-		JButton btnBattle_4 = new JButton("Battle");
-		btnBattle_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (playerScore < 5 && aiScore < 5) {
-					openBattleWindow(GameApp.playerList.get(4));
-				} else if(playerScore == 5){
-					//TODO Add Pop-up Winning Message
-					System.out.println("Player Wins");
-				} else{
-					//TODO Add Pop-up Losing Message
-					System.out.println("Player Loses");
+			txtPlayerChar_3.setBackground(new Color(222, 184, 135));
+			txtPlayerChar_3.setEditable(false);
+			txtPlayerChar_3.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtPlayerChar_3.setBounds(10, 271, 335, 52);
+			contentPane.add(txtPlayerChar_3);
+			
+			JButton btnBattle_3 = new JButton("Battle");
+			btnBattle_3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (playerScore < 5 && aiScore < 5) {
+						openBattleWindow(GameApp.playerList.get(3));
+					} else if(playerScore == 5){
+						//TODO Add Pop-up Winning Message
+						System.out.println("Player Wins");
+					} else{
+						//TODO Add Pop-up Losing Message
+						System.out.println("Player Loses");
+					}
 				}
+			});
+			btnBattle_3.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
+			btnBattle_3.setBounds(360, 291, 89, 23);
+			contentPane.add(btnBattle_3);
+			
+			//Player Combatant 5
+			txtPlayerChar_4.setText(playerCombatant_4.toString());
+			if(playerCombatant_4.getStatus() == false){
+				updateCharacterText(playerCombatant_4, txtPlayerChar_4);
 			}
-		});
-		btnBattle_4.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
-		btnBattle_4.setBounds(360, 352, 89, 23);
-		contentPane.add(btnBattle_4);
+			txtPlayerChar_4.setBackground(new Color(222, 184, 135));
+			txtPlayerChar_4.setEditable(false);
+			txtPlayerChar_4.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtPlayerChar_4.setBounds(10, 337, 335, 52);
+			contentPane.add(txtPlayerChar_4);
+			
+			JButton btnBattle_4 = new JButton("Battle");
+			btnBattle_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (playerScore < 5 && aiScore < 5) {
+						openBattleWindow(GameApp.playerList.get(4));
+					} else if(playerScore == 5){
+						//TODO Add Pop-up Winning Message
+						System.out.println("Player Wins");
+					} else{
+						//TODO Add Pop-up Losing Message
+						System.out.println("Player Loses");
+					}
+				}
+			});
+			btnBattle_4.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 11));
+			btnBattle_4.setBounds(360, 352, 89, 23);
+			contentPane.add(btnBattle_4);
+		}
 		
-		
-		//AI Combatant 1
-		JTextArea txtAIChar_0 = new JTextArea(GameApp.aiList.get(0).toString());
-		txtAIChar_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtAIChar_0.setEditable(false);
-		txtAIChar_0.setBackground(new Color(222, 184, 135));
-		txtAIChar_0.setBounds(551, 97, 335, 52);
-		contentPane.add(txtAIChar_0);
-		
-		//AI Combatant 2
-		JTextArea txtAIChar_1 = new JTextArea(GameApp.aiList.get(1).toString());
-		txtAIChar_1.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtAIChar_1.setEditable(false);
-		txtAIChar_1.setBackground(new Color(222, 184, 135));
-		txtAIChar_1.setBounds(551, 160, 335, 52);
-		contentPane.add(txtAIChar_1);
-		
-		//AI Combatant 3
-		JTextArea txtAIChar_2 = new JTextArea(GameApp.aiList.get(2).toString());
-		txtAIChar_2.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtAIChar_2.setEditable(false);
-		txtAIChar_2.setBackground(new Color(222, 184, 135));
-		txtAIChar_2.setBounds(551, 223, 335, 52);
-		contentPane.add(txtAIChar_2);
-		
-		//AI Combatant 4
-		JTextArea txtAIChar_3 = new JTextArea(GameApp.aiList.get(3).toString());
-		txtAIChar_3.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtAIChar_3.setEditable(false);
-		txtAIChar_3.setBackground(new Color(222, 184, 135));
-		txtAIChar_3.setBounds(551, 286, 335, 52);
-		contentPane.add(txtAIChar_3);
-		
-		
-		//AI Combatant 5
-		JTextArea txtAIChar_4 = new JTextArea(GameApp.aiList.get(4).toString());
-		txtAIChar_4.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
-		txtAIChar_4.setEditable(false);
-		txtAIChar_4.setBackground(new Color(222, 184, 135));
-		txtAIChar_4.setBounds(551, 352, 335, 52);
-		contentPane.add(txtAIChar_4);
-		
+		void updateAIText(){
+			//AI Combatant 1
+			txtAIChar_0.setText(aiCombatant_0.toString());
+			if(aiCombatant_0.getStatus() == false){
+				updateCharacterText(aiCombatant_0, txtAIChar_0);
+			}
+			txtAIChar_0.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtAIChar_0.setEditable(false);
+			txtAIChar_0.setBackground(new Color(222, 184, 135));
+			txtAIChar_0.setBounds(551, 97, 335, 52);
+			contentPane.add(txtAIChar_0);
+			
+			//AI Combatant 2
+			txtAIChar_1.setText(aiCombatant_1.toString());
+			if(aiCombatant_1.getStatus() == false){
+				updateCharacterText(aiCombatant_1, txtAIChar_1);
+			}
+			txtAIChar_1.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtAIChar_1.setEditable(false);
+			txtAIChar_1.setBackground(new Color(222, 184, 135));
+			txtAIChar_1.setBounds(551, 160, 335, 52);
+			contentPane.add(txtAIChar_1);
+			
+			//AI Combatant 3
+			txtAIChar_2.setText(aiCombatant_2.toString());
+			if(aiCombatant_2.getStatus() == false){
+				updateCharacterText(aiCombatant_2, txtAIChar_2);
+			}
+			txtAIChar_2.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtAIChar_2.setEditable(false);
+			txtAIChar_2.setBackground(new Color(222, 184, 135));
+			txtAIChar_2.setBounds(551, 223, 335, 52);
+			contentPane.add(txtAIChar_2);
+			
+			//AI Combatant 4
+			txtAIChar_3.setText(aiCombatant_3.toString());
+			if(aiCombatant_3.getStatus() == false){
+				updateCharacterText(aiCombatant_3, txtAIChar_3);
+			}
+			txtAIChar_3.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtAIChar_3.setEditable(false);
+			txtAIChar_3.setBackground(new Color(222, 184, 135));
+			txtAIChar_3.setBounds(551, 286, 335, 52);
+			contentPane.add(txtAIChar_3);
+			
+			
+			//AI Combatant 5
+			txtAIChar_4.setText(aiCombatant_4.toString());
+			if(aiCombatant_4.getStatus() == false){
+				updateCharacterText(aiCombatant_4, txtAIChar_4);
+			}
+			txtAIChar_4.setFont(new Font("Lithos Pro Regular", Font.PLAIN, 16));
+			txtAIChar_4.setEditable(false);
+			txtAIChar_4.setBackground(new Color(222, 184, 135));
+			txtAIChar_4.setBounds(551, 352, 335, 52);
+			contentPane.add(txtAIChar_4);
+		}
 	
-		
+		void updateCharacterText(Character character, JTextArea textArea){
+			textArea.setText(character.getName() + " is Dead");
 		}
 	
 		void openBattleWindow(Character playerCombatant){

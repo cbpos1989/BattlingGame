@@ -18,6 +18,7 @@ public class GameApp {
 	
 	private ArrayList<Character> startingList = new ArrayList<Character>();
 	private Random rnd = new Random();
+	private static GameMenu frame;
 	
 	public static ArrayList<Character> playerList = new ArrayList<Character>();
 	public static ArrayList<Character> aiList = new ArrayList<Character>();
@@ -41,13 +42,15 @@ public class GameApp {
 	}
 	
 	void runGame(){
-		try {
-			
+		
+		try{
 			genRandomList(playerList);
 			genRandomList(aiList);
 			
-			GameMenu frame = new GameMenu();
+			frame = new GameMenu();
 			frame.setVisible(true);
+			
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -120,6 +123,9 @@ public class GameApp {
 			GameMenu.isBattling = false;
 			defender.setWillpower(0);
 			defender.setStatus(false);
+			frame.updatePlayerText();
+			frame.updateAIText();
+			
 			
 			if(BattleWindow.isPlayerTurn){
 				GameMenu.playerScore++;
