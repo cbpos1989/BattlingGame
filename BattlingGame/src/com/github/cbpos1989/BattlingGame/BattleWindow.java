@@ -59,7 +59,7 @@ public class BattleWindow extends JFrame {
 				isPlayerTurn = true;
 				
 				if(GameMenu.isBattling){
-					ga.attack(playerCombatant, aiCombatant);
+					ga.attack(playerCombatant, aiCombatant, BattleWindow.this);
 					
 					lblPlayerWillpower.setText("Willpower: " + playerCombatant.getWillpower());
 					lblAIWillpower.setText("Willpower: " + aiCombatant.getWillpower());
@@ -76,7 +76,7 @@ public class BattleWindow extends JFrame {
 				isPlayerTurn = false;
 				
 				if(GameMenu.isBattling){
-					ga.attack(aiCombatant, playerCombatant);
+					ga.attack(aiCombatant, playerCombatant, BattleWindow.this);
 					
 					lblPlayerWillpower.setText("Willpower: " + playerCombatant.getWillpower());
 					lblAIWillpower.setText("Willpower: " + aiCombatant.getWillpower());

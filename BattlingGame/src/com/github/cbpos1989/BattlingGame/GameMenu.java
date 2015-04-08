@@ -336,7 +336,7 @@ public class GameMenu extends JFrame {
 		void openBattleWindow(Character playerCombatant){
 			if(playerCombatant.getStatus()){
 				isBattling = true;
-				
+				BattleWindow.combatReport = null;
 				//Cycles through aiList to find a character who is alive
 				while(true){
 					int rnd = ga.randomGenerator(GameApp.aiList.size());
