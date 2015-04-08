@@ -15,6 +15,7 @@ import java.util.Random;
 public class GameApp {
 	private final int NUM_OF_CHARACTERS = 5;
 	private final int MAX_DIE_ROLL = 6;
+	private final int MAX_D20_ROLL = 20;
 	
 	private ArrayList<Character> startingList = new ArrayList<Character>();
 	private Random rnd = new Random();
@@ -98,11 +99,19 @@ public class GameApp {
 		int attackerDieRoll = randomGenerator(MAX_DIE_ROLL) + 1;
 		int defenderDieRoll = randomGenerator(MAX_DIE_ROLL) + 1;
 		
+		//System.out.println(attackerDieRoll + " " + defenderDieRoll);
 		
 		int hitPoints = attacker.getStrength() - attackerDieRoll;
 		int defendPoints = defender.getCraft() - defenderDieRoll;
 	
+		attackerDieRoll = randomGenerator(MAX_D20_ROLL) + 1;
+		defenderDieRoll = randomGenerator(MAX_D20_ROLL) + 1;
 		
+		hitPoints += attackerDieRoll;
+		defendPoints += attackerDieRoll;
+		
+		System.out.println("Die Rolls" + attackerDieRoll + " " + defenderDieRoll);
+		System.out.println("Attack/Defend Points" + hitPoints + " " + defendPoints );
 		
 		if(hitPoints > defendPoints){
 			
