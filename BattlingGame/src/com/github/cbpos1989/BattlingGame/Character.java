@@ -68,6 +68,22 @@ public enum Character {
 		return this.hasBattled;
 	}
 	
+	public int getPower(){
+		if(this.strength > this.craft){
+			return this.strength;
+		} else {
+			return this.craft;
+		}
+	}
+	
+	public int getWeakness(){
+		if(this.strength > this.craft){
+			return this.craft;
+		} else {
+			return this.strength;
+		}
+	}
+	
 	public String toString(){
 		return  super.toString() + "\n Strength: " + this.strength + " Craft: " + this.craft + " Willpower: "+ this.willpower;
 	}

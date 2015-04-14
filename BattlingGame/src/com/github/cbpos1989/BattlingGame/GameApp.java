@@ -11,6 +11,8 @@ package com.github.cbpos1989.BattlingGame;
  */
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class GameApp {
@@ -98,22 +100,26 @@ public class GameApp {
 		
 		
 		int attackerDieRoll = randomGenerator(MAX_DIE_ROLL) + 1;
-		int defenderDieRoll = randomGenerator(MAX_DIE_ROLL) + 1;
+		int defenderDieRoll = randomGenerator(MAX_D12_ROLL) + 1;
 		
-		int hitPoints = attacker.getStrength() - attackerDieRoll;
-		int defendPoints = defender.getCraft() - defenderDieRoll;
+		
+		int hitPoints = attacker.getPower() - attackerDieRoll;
+		hitPoints+= randomGenerator(MAX_D12_ROLL) + 1;
+		int defendPoints = defender.getWeakness() + defenderDieRoll;
 	
-
 		System.out.println("Die Rolls " + attackerDieRoll + " " + defenderDieRoll);
 		System.out.println("Attack/Defend Points " + hitPoints + " " + defendPoints );
 		
+
 		if(hitPoints > defendPoints){
 			
 			defender.setWillpower(defender.getWillpower() - (hitPoints - defendPoints));
 			
 			checkWillpower(defender);
-			if(GameMenu.isBattling == false)
-				battleWindow.setVisible(false);
+			if(GameMenu.isBattling == false){
+				JDialog message = new DeathMessage(defender.getName(), battleWindow);
+				message.setVisible(true);
+			}
 		} else {
 			
 			BattleWindow.combatReport = "Hit Missed";
